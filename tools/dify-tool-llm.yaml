@@ -1,0 +1,167 @@
+identity:
+  name: dify-tool-llm
+  author: breeze
+  label:
+    en_US: dify-tool-llm
+    zh_Hans: dify-tool-llm
+    pt_BR: dify-tool-llm
+description:
+  human:
+    en_US: 生成SQL语句并查询数据
+    zh_Hans: 生成SQL语句并查询数据
+    pt_BR: 生成SQL语句并查询数据
+  llm: 生成SQL语句并查询数据
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 查询语句
+      pt_BR: Query string
+    human_description:
+      en_US: 生成SQL语句并查询数据
+      zh_Hans: 生成SQL语句并查询数据
+      pt_BR: 生成SQL语句并查询数据
+    llm_description: 生成SQL语句并查询数据
+    form: llm
+  - name: table_names
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: table_names
+      zh_Hans: 数据表名称
+      pt_BR: table_names
+    human_description:
+      en_US: table_names
+      zh_Hans: 数据表名称
+      pt_BR: table_names
+    llm_description: table_names
+  - name: model
+    type: model-selector
+    scope: llm
+    required: true
+    label:
+      en_US: Model
+      zh_Hans: 使用的模型
+      pt_BR: Model
+    human_description:
+      en_US: Model
+      zh_Hans: 使用的模型
+      pt_BR: Model
+    llm_description: '选择一个模型'
+    form: form
+  - name: custom_prompt
+    type: string
+    required: false
+    label:
+      en_US: custom_prompt
+      zh_Hans: 自定义提示
+      pt_BR: custom_prompt
+    human_description:
+      en_US: custom_prompt
+      zh_Hans: 自定义提示
+      pt_BR: custom_prompt
+    llm_description: 自定义提示
+    form: llm  
+
+  - name: host
+    type: string
+    required: true
+    form: form
+    label:
+      en_US: Database ip/host
+      zh_Hans: 数据库IP/域名
+      pt_BR: Database ip/host
+    human_description:
+      en_US: Database ip/host
+      zh_Hans: 数据库IP/域名
+      pt_BR: Database ip/host
+    llm_description: Database ip/host
+  - name: port
+    type: number
+    required: true
+    default: 3306
+    form: form
+    min: 1
+    max: 65535
+    label:
+      en_US: Database port
+      zh_Hans: 数据库端口
+      pt_BR: Database port
+    human_description:
+      en_US: Database port
+      zh_Hans: 数据库端口
+      pt_BR: Database port
+    llm_description: Database port
+  - name: db_name
+    type: string
+    required: true
+    form: form
+    label:
+      en_US: Database name
+      zh_Hans: 数据库名称
+      pt_BR: Database name
+    human_description:
+      en_US: Database name
+      zh_Hans: 数据库名称
+      pt_BR: Database name
+    llm_description: Database name
+  - name: username
+    type: string
+    required: true
+    form: form
+    label:
+      en_US: Username
+      zh_Hans: 用户名
+      pt_BR: Username
+    human_description:
+      en_US: Username
+      zh_Hans: 用户名
+      pt_BR: Username
+    llm_description: Username
+  - name: password
+    type: secret-input
+    required: true
+    form: form
+    label:
+      en_US: Password
+      zh_Hans: 密码
+      pt_BR: Password
+    human_description:
+      en_US: Password
+      zh_Hans: 密码
+      pt_BR: Password
+    llm_description: Password
+  - name: with_comment
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: with_comment
+      zh_Hans: 是否包含注释
+      pt_BR: with_comment
+    human_description:
+      en_US: with_comment
+      zh_Hans: 是否包含注释
+      pt_BR: with_comment
+    llm_description: 是否包含注释
+    form: form
+  - name: is_thinking
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: is_thinking
+      zh_Hans: 是否深度思考
+      pt_BR: is_thinking
+    human_description:
+      en_US: is_thinking
+      zh_Hans: 是否深度思考
+      pt_BR: is_thinking
+    llm_description: 是否深度思考
+    form: form  
+extra:
+  python:
+    source: tools/dify-tool-llm.py

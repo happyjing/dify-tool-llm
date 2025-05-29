@@ -1,0 +1,19 @@
+identity:
+  author: breeze
+  name: dify-tool-llm
+  label:
+    en_US: dify-tool-llm
+    zh_Hans: dify-tool-llm
+    pt_BR: dify-tool-llm
+  description:
+    en_US: 生成SQL语句并查询数据
+    zh_Hans: 生成SQL语句并查询数据
+    pt_BR: 生成SQL语句并查询数据
+  icon: icon.svg
+tools:
+  - tools/dify-tool-llm.yaml
+  - tools/dify-tool-sql.yaml
+extra:
+  python:
+    source: provider/dify-tool-llm.py
+    

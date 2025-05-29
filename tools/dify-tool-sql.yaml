@@ -1,0 +1,116 @@
+identity:
+  name: dify-tool-sql
+  author: breeze
+  label:
+    en_US: dify-tool-sql
+    zh_Hans: dify-tool-sql
+    pt_BR: dify-tool-sql
+description:
+  human:
+    en_US: 查询数据
+    zh_Hans: 查询数据
+    pt_BR: 查询数据
+  llm: 并查询数据
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 运行的SQL的语句
+      pt_BR: Query string
+    human_description:
+      en_US: 运行的SQL的语句
+      zh_Hans: 运行的SQL的语句
+      pt_BR: 运行的SQL的语句
+    llm_description: 运行的SQL的语句
+    form: llm
+  - name: db_type
+    type: select
+    required: true
+    default: MySQL
+    form: form
+    label:
+      en_US: Database type
+      zh_Hans: 数据库类型
+      pt_BR: Database type
+    human_description:
+      en_US: Database type
+      zh_Hans: 数据库类型
+      pt_BR: Database type
+    llm_description: Database type
+    options:
+      - label:
+          en_US: MySQL
+        value: mysql
+  - name: host
+    type: string
+    required: true
+    form: form
+    label:
+      en_US: Database ip/host
+      zh_Hans: 数据库IP/域名
+      pt_BR: Database ip/host
+    human_description:
+      en_US: Database ip/host
+      zh_Hans: 数据库IP/域名
+      pt_BR: Database ip/host
+    llm_description: Database ip/host
+  - name: port
+    type: number
+    required: true
+    default: 3306
+    form: form
+    min: 1
+    max: 65535
+    label:
+      en_US: Database port
+      zh_Hans: 数据库端口
+      pt_BR: Database port
+    human_description:
+      en_US: Database port
+      zh_Hans: 数据库端口
+      pt_BR: Database port
+    llm_description: Database port
+  - name: db_name
+    type: string
+    required: true
+    form: form
+    label:
+      en_US: Database name
+      zh_Hans: 数据库名称
+      pt_BR: Database name
+    human_description:
+      en_US: Database name
+      zh_Hans: 数据库名称
+      pt_BR: Database name
+    llm_description: Database name
+  - name: username
+    type: string
+    required: true
+    form: form
+    label:
+      en_US: Username
+      zh_Hans: 用户名
+      pt_BR: Username
+    human_description:
+      en_US: Username
+      zh_Hans: 用户名
+      pt_BR: Username
+    llm_description: Username
+  - name: password
+    type: secret-input
+    required: true
+    form: form
+    label:
+      en_US: Password
+      zh_Hans: 密码
+      pt_BR: Password
+    human_description:
+      en_US: Password
+      zh_Hans: 密码
+      pt_BR: Password
+    llm_description: Password
+extra:
+  python:
+    source: tools/dify-tool-sql.py

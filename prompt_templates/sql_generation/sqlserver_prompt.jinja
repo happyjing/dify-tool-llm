@@ -1,0 +1,46 @@
+{# SQL Server专用模板 #}
+{% extends "base_prompt.jinja" %}
+
+{% block optimization_rules %}
+1. 使用包含性索引策略（INCLUDE Index），将常用查询字段包含在索引中
+2. 避免SELECT *，仅返回需求中的必要字段
+3. 对日期字段使用DATEADD/DATEDIFF函数进行范围查询优化
+4. 多表关联必须使用INNER HASH JOIN或INNER LOOP JOIN，根据表大小智能选择
+5. 使用WITH(NOLOCK)提示实现脏读以提升查询性能
+6. 对TOP子句配合ORDER BY使用索引视图优化
+{% endblock %}
+
+{% block validation_rules %}
+1. 生成后自动检查系统表sys.tables验证表是否存在
+2. 使用sys.columns验证字段存在性，缺失字段立即报错
+3. 检查执行计划确认Index Seek操作至少出现2次
+4. 验证统计信息更新状态，提示过时统计信息需要更新
+{% endblock %}
+
+{% block example_section %}
+## 输出示例：
+SELECT TOP 100 
+    [order_id] AS 订单编号,
+    [amount] * 1.05 AS 含税金额  
+FROM 
+    [orders] o WITH(NOLOCK)
+INNER HASH JOIN 
+    [customers] c ON o.[customer_id] = c.[id]  
+WHERE 
+    o.[status] = 'paid' 
+    AND c.[region] = 'Asia'
+    AND o.[created_at] BETWEEN '2025-01-01' AND GETDATE()
+ORDER BY 
+    o.[order_id] DESC;
+{% endblock %}
+
+## 新增SQL Server特性：
+1. 所有标识符使用方括号包裹，处理包含空格的字段名
+2. 使用分页查询时必须添加ORDER BY子句
+3. 对货币字段使用DECIMAL(19,4)类型精确计算
+4. 使用TRY_CONVERT替代CONVERT防止类型转换失败
+
+## 特别注意：
+1. 使用ANSI_WARNINGS设置保证查询兼容性
+2. 对XML类型字段使用.value()方法进行解析
+3. 使用SCHEMA_NAME()函数限定表所属架构

@@ -1,0 +1,53 @@
+version: 0.0.1
+type: plugin
+author: breeze
+name: dify-tool-llm
+label:
+  en_US: dify-tool-llm
+  ja_JP: dify-tool-llm
+  zh_Hans: dify-tool-llm
+  pt_BR: dify-tool-llm
+description:
+  en_US: 生成SQL语句并查询数据
+  ja_JP: 生成SQL语句并查询数据
+  zh_Hans: 生成SQL语句并查询数据
+  pt_BR: 生成SQL语句并查询数据
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: true
+      llm: true
+      text_embedding: true
+      rerank: true
+      tts: false
+      speech2text: false
+      moderation: true
+    node:
+      enabled: false
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  tools:
+    - provider/dify-tool-llm.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 0.0.1
+created_at: 2025-05-23T10:48:40.2092925+08:00
+privacy: PRIVACY.md
+verified: false
