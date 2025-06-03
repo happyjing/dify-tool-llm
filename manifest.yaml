@@ -1,6 +1,6 @@
 version: 0.0.1
 type: plugin
-author: breeze
+author: happyjing
 name: dify-tool-llm
 label:
   en_US: dify-tool-llm
