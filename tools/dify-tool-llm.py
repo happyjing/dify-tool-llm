@@ -67,8 +67,12 @@ class DifyToolLlmTool(Tool):
             stream=False
         )
         out_sql = response.message.content
-        sql_query = out_sql.split('</think>\n\n')[1]
-        # print(out_sql)
+        sql_query = ''
+        if (out_sql and '</think>\n\n' in out_sql): 
+            sql_query = out_sql.split('</think>\n\n')[1]
+        else:
+            sql_query = out_sql
+        # sql_query = out_sql.split('</think>\n\n')[1]
         yield self.create_text_message(sql_query)
         # yield self.create_json_message({
         #     "result": out_sql
