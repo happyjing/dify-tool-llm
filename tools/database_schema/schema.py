@@ -55,7 +55,7 @@ class DatabaseSchema:
             'password': 'Longing86106522.',
             'database': 'anxiaomei',
         }
-        self.db_instance = db_class(config=config1)
+        self.db_instance = db_class(config)
         self.db_type = db_type.lower()
         return self.db_instance.connect()
     

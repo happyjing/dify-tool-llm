@@ -41,6 +41,7 @@ class DifyToolLlmTool(Tool):
             'db_type': "mysql",
             'meta_data': dsl_text
         }
+        print(context)
         # 获取动态提示词
         system_prompt = prompt_loader.get_prompt(
             db_type="mysql",
